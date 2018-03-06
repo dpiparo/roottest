@@ -8,8 +8,11 @@ int test_readTotemNtuple() {
    };
    d.Foreach(validate_x, {"track_rp_3.x"});
 
+   // now jitted with alias
+   auto count0 = d.Alias("t_y", "track_rp_3.y").Filter("cout << t_y << endl; return true;").Count();
+   *count0;
    // now jitted
-   auto count = d.Alias("t_y", "track_rp_3.y").Filter("cout << t_y << endl; return true;").Count();
+   auto count = d.Filter("cout << track_rp_3.y << endl; return true;").Count();
    *count;
 
    return 0;

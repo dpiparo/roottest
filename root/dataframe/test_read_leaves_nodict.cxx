@@ -11,6 +11,8 @@ int main()
 {
    TDataFrame d("t", "test_read_leaves.root");
    d.Filter(check_a_b, {"v.a", "v.b"}).Report();
+   // now jitted
+   d.Filter("v.a + v.b > 0").Report();
    return 0;
 }
 
